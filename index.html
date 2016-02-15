@@ -1,21 +1,23 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>I am BlocksBerg</title>
-	<meta name="description" content="I am BlocksBerg">
-	<meta name="keywords" content="I am BlocksBerg,BlocksBerg,BlocksBerg DW"> 
+	<title>iamblocksberg;</title>
+	<meta name="description" content="iamblocksberg;">
+	<meta name="keywords" content="iamblocksberg;, iamblocksberg, ;, i, am, blocksberg, dw"> 
 	<meta name="robots" content="index, follow"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"> 
 	<meta charset="UTF-8"> 
 	<style>
+
+::selection {
+	background-color: #222;
+}
 
 body {
 	margin: 0;
 	background: #222222 url(img/bg.jpg) top center fixed no-repeat;
 	font-family: Helvetica, Arial, tahoma, verdana, arial, sans-serif;
 	color: #ffffff;
-	user-select: none;
-	-webkit-user-select: none;
 }
 
 a {
@@ -51,7 +53,7 @@ header {
 <body>
 	<header>
 		<div class="inhead">
-			<div class="txtinhead">I am BlocksBerg</div>
+			<div id="txtinhead" class="txtinhead"></div>
 			<br>
 			<br>
 			<a href="https://www.facebook.com/iamblocksberg">
@@ -59,5 +61,26 @@ header {
 			</a>
 		</div>
 	</header>
+	<script>
+
+	var box = document.getElementById('txtinhead');
+	var speed = 150;
+	var text = 'iamblocksberg;';
+	text = text.split("");
+
+	var i = 0;
+
+	var loop = setInterval(function(){
+
+		if(i < text.length){
+			box.innerHTML += text[i];
+			i++;
+		}else{
+			clearInterval(loop);
+		}
+
+	}, speed);
+
+	</script>
 </body>
 </html>
