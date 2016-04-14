@@ -2,6 +2,10 @@
 var canvasBox = document.getElementById('box-canvas');
 var canvasEle = document.getElementById('canvas');
 var canvas = canvasEle.getContext('2d');
+var btn_up = document.getElementById('btn-move-up');
+var btn_down = document.getElementById('btn-move-down');
+var btn_left = document.getElementById('btn-move-left');
+var btn_right = document.getElementById('btn-move-right');
 
 
 //Setting
@@ -108,7 +112,7 @@ function move_object(object, target, speed){
 }
 
 //-Move Player
-function player_canmove(move){
+function player_canmove(move, checkOnly){
 	var axisX = 0;	//-1 is Left, 1 is Right
 	var axisY = 0;	//-1 is Up, 1 is Down
 	var canMove = false;
@@ -132,7 +136,7 @@ function player_canmove(move){
 	}
 
 	//if have direction and x, y not moving
-	if((axisX != 0 || axisY != 0) && (player.canMoveX && player.canMoveY)){
+	if((axisX != 0 || axisY != 0) && (checkOnly || player.canMoveX && player.canMoveY)){
 
 		//Get Type of Next Props from GenProps
 		var thisBoxX = player.blockX + axisX;
@@ -151,6 +155,7 @@ function player_canmove(move){
 				canMove = true;
 			}else{
 
+				//This Prop can move or not
 				if(allProps[typeBox].canMove){
 					//This Props can move
 
@@ -161,16 +166,21 @@ function player_canmove(move){
 
 					//Check Exist Next next props, if no can move
 					if(typeNextBox == 0){
-						//Move This Props, set type and next x y
-						props.moving = typeBox;
-						props.movingX = thisBoxX * game.blockSize;
-						props.movingY = thisBoxY * game.blockSize;
-						props.moveCol = thisBoxX;
-						props.moveRow = thisBoxY;
-						props.moveToCol = nextBoxX;
-						props.moveToRow = nextBoxY;
-						//Remove this Props
-						genProps[thisBoxY][thisBoxX] = 0;
+
+						//if check only, no create new prop for move
+						if(!checkOnly){
+							//Move This Props, set type and next x y
+							props.moving = typeBox;
+							props.movingX = thisBoxX * game.blockSize;
+							props.movingY = thisBoxY * game.blockSize;
+							props.moveCol = thisBoxX;
+							props.moveRow = thisBoxY;
+							props.moveToCol = nextBoxX;
+							props.moveToRow = nextBoxY;
+							//Remove this Props
+							genProps[thisBoxY][thisBoxX] = 0;
+						}
+						
 						canMove = true;
 					}
 
@@ -310,7 +320,7 @@ function draw(){
 			allProps[ props.moving ].width * game.blockSize,			//Width in Game
 			allProps[ props.moving ].height * game.blockSize			//Height in Game
 		);
-//console.log('x'+props.movingX+' y'+props.movingY);
+
 		//-Moving
 		var targetX = props.moveToCol * game.blockSize;
 		var targetY = props.moveToRow * game.blockSize;
@@ -333,9 +343,6 @@ function draw(){
 			props.yMoveFinish = true;
 		}
 		
-		// var xMoveFinish = move_object(props.movingX, targetX, player.speedMove);
-		// var yMoveFinish = move_object(props.movingY, targetY, player.speedMove);
-
 		//if move finished, spawn props moving
 		if(props.xMoveFinish && props.yMoveFinish){
 			//Create Moving Box
@@ -382,6 +389,32 @@ function draw(){
 
 function update(){
 	draw();
+
+	//Check btn can move or not
+	//-up
+	if(player_canmove('up', true)){
+		btn_up.disabled = false;
+	}else{
+		btn_up.disabled = true;
+	}
+	//-down
+	if(player_canmove('down', true)){
+		btn_down.disabled = false;
+	}else{
+		btn_down.disabled = true;
+	}
+	//-left
+	if(player_canmove('left', true)){
+		btn_left.disabled = false;
+	}else{
+		btn_left.disabled = true;
+	}
+	//-right
+	if(player_canmove('right', true)){
+		btn_right.disabled = false;
+	}else{
+		btn_right.disabled = true;
+	}
 
 	requestAnimationFrame(update);
 }

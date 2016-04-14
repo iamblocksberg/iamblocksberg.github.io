@@ -1,0 +1,55 @@
+body {
+	margin: 0;
+}
+
+#box-canvas {
+	width: 100%;
+	max-width: 360px;
+	height: 100vh;
+	max-height: 640px;
+	margin: 0 auto;
+	position: relative;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+#canvas {
+	background-color: #222;
+}
+
+#box-ui-move {
+	width: 318px;
+	position: absolute;
+	bottom: 50px;
+	left: 21px;
+}
+
+#box-ui-move .btn-move {
+	width: 100px;
+	height: 60px;
+	background-color: #222;
+	background-image: url('image/sprite1.png');
+	border: 0;
+	outline: 0;
+	display: block;
+}
+
+.btn-move.-down, .btn-move.-left, .btn-move.-right {
+	float: left;
+	margin: 6px 3px;
+}
+
+.btn-move.-up { background-position: -100px -400px; margin: 0 auto; }
+.btn-move.-down { background-position: -100px -460px; }
+.btn-move.-left { background-position: -100px -520px; }
+.btn-move.-right { background-position: -100px -580px; }
+
+.btn-move.-up:active { background-position: -200px -400px; }
+.btn-move.-down:active { background-position: -200px -460px; }
+.btn-move.-left:active { background-position: -200px -520px; }
+.btn-move.-right:active { background-position: -200px -580px; }
+
+.btn-move.-up:disabled { background-position: 0 -400px; }
+.btn-move.-down:disabled { background-position: 0 -460px; }
+.btn-move.-left:disabled { background-position: 0 -520px; }
+.btn-move.-right:disabled { background-position: 0 -580px; }

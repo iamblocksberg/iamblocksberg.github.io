@@ -1,29 +1,18 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Walk Puzzle by iamblocksberg;</title>
-	<style type="text/css">
-	body {
-		margin: 0;
-	}
-
-	#box-canvas {
-		width: 100%;
-		max-width: 360px;
-		height: 100vh;
-		max-height: 640px;
-		margin: 0 auto;
-	}
-
-	#canvas {
-		background-color: #222;
-	}
-
-	</style>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<div id="box-canvas">
+		<div id="box-ui-move">
+			<button id="btn-move-up" class="btn-move -up" onclick="player_move_up()"></button>
+			<button id="btn-move-left" class="btn-move -left" onclick="player_move_left()"></button>
+			<button id="btn-move-down" class="btn-move -down" onclick="player_move_down()"></button>
+			<button id="btn-move-right" class="btn-move -right" onclick="player_move_right()"></button>
+		</div>
 		<canvas id="canvas"></canvas>
 	</div>
 	<script src="main.js" type="text/javascript"></script>
