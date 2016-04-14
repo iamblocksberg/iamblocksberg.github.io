@@ -26,12 +26,17 @@ body {
 
 #box-ui-move .btn-move {
 	width: 100px;
-	height: 60px;
 	background-color: #222;
 	background-image: url('image/sprite1.png');
 	border: 0;
 	outline: 0;
 	display: block;
+}
+
+
+
+.btn-move.-up, .btn-move.-down, .btn-move.-left, .btn-move.-right {
+	height: 60px;
 }
 
 .btn-move.-down, .btn-move.-left, .btn-move.-right {
@@ -44,10 +49,10 @@ body {
 .btn-move.-left { background-position: -100px -520px; }
 .btn-move.-right { background-position: -100px -580px; }
 
-.btn-move.-up:active { background-position: -200px -400px; }
-.btn-move.-down:active { background-position: -200px -460px; }
-.btn-move.-left:active { background-position: -200px -520px; }
-.btn-move.-right:active { background-position: -200px -580px; }
+.btn-move.-up:active, .btn-move.-down:active, .btn-move.-left:active,.btn-move.-right:active {
+	height: 56px;
+	margin-top: 10px;
+}
 
 .btn-move.-up:disabled { background-position: 0 -400px; }
 .btn-move.-down:disabled { background-position: 0 -460px; }
