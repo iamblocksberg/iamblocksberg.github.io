@@ -139,46 +139,51 @@ function player_canmove(move, checkOnly){
 	if((axisX != 0 || axisY != 0) && (checkOnly || player.canMoveX && player.canMoveY)){
 
 		//Get Type of Next Props from GenProps
-		var thisBoxX = player.blockX + axisX;
-		var thisBoxY = player.blockY + axisY;
-		var typeBox = null;
+		var thisPropsX = player.blockX + axisX;
+		var thisPropsY = player.blockY + axisY;
+		var typeProps = null;
 
-		//Check Exist X Y, if have set typebox
-		if(thisBoxY >= 0 && thisBoxY < genProps.length){
-			typeBox = genProps[thisBoxY][thisBoxX];
+		//Check Exist X Y, if have set typeProps
+		if(thisPropsY >= 0 && thisPropsY < genProps.length){
+			typeProps = genProps[thisPropsY][thisPropsX];
 		}
 
-		if(typeBox != null){
+		if(typeProps != null){
 			
-			if(typeBox == 0){
+			if(typeProps == 0){
 				//No Props, Can Move
 				canMove = true;
 			}else{
 
 				//This Prop can move or not
-				if(allProps[typeBox].canMove){
+				if(allProps[typeProps].canMove){
 					//This Props can move
 
 					//Next Props of this Props
-					var nextBoxX = player.blockX + (axisX * 2);
-					var nextBoxY = player.blockY + (axisY * 2);
-					var typeNextBox = genProps[nextBoxY][nextBoxX];
+					var nextPropsX = player.blockX + (axisX * 2);
+					var nextPropsY = player.blockY + (axisY * 2);
+					var typeNextProps = null;
+
+					//Check Exist X Y, if have set type Next Props
+					if(nextPropsY >= 0 && nextPropsY < genProps.length){
+						typeNextProps = genProps[nextPropsY][nextPropsX];
+					}
 
 					//Check Exist Next next props, if no can move
-					if(typeNextBox == 0){
+					if(typeNextProps == 0){
 
 						//if check only, no create new prop for move
 						if(!checkOnly){
 							//Move This Props, set type and next x y
-							props.moving = typeBox;
-							props.movingX = thisBoxX * game.blockSize;
-							props.movingY = thisBoxY * game.blockSize;
-							props.moveCol = thisBoxX;
-							props.moveRow = thisBoxY;
-							props.moveToCol = nextBoxX;
-							props.moveToRow = nextBoxY;
+							props.moving = typeProps;
+							props.movingX = thisPropsX * game.blockSize;
+							props.movingY = thisPropsY * game.blockSize;
+							props.moveCol = thisPropsX;
+							props.moveRow = thisPropsY;
+							props.moveToCol = nextPropsX;
+							props.moveToRow = nextPropsY;
 							//Remove this Props
-							genProps[thisBoxY][thisBoxX] = 0;
+							genProps[thisPropsY][thisPropsX] = 0;
 						}
 						
 						canMove = true;
@@ -345,7 +350,7 @@ function draw(){
 		
 		//if move finished, spawn props moving
 		if(props.xMoveFinish && props.yMoveFinish){
-			//Create Moving Box
+			//Create Moving Props
 			genProps[props.moveToRow][props.moveToCol] = props.moving;
 			//Reset value Props moving
 			props.moving = 0;
