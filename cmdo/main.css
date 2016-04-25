@@ -1,0 +1,18 @@
+﻿body, #boxInput {
+	color: #ccc;
+	background-color: #000;
+	font-family: arial;
+	font-size: 14px;
+	margin: 0;
+}
+
+#boxInput {
+	width: 70%;
+	border: 0;
+	outline: 0;
+}
+
+#boxOutput {
+	width: 100%;
+	word-warp: break-word
+}
