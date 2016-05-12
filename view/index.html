@@ -1,0 +1,76 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>View</title>
+	<style>
+		body {
+			margin: 0;
+		}
+
+		#boxIframe {
+			width: 100%;
+			height: calc(100% - 40px);
+			border: 0;
+		}
+
+		#viewEnterUrl {
+			width: 100%;
+		}
+
+		#urlValue {
+			width: 80%;
+			padding: 10px;
+		}
+
+		button {
+			width: 19%;
+		}
+
+		#urlValue, button {
+			height: 40px;
+		}
+	</style>
+</head>
+<body>
+	<div id="viewEnterUrl">
+		<input id="urlValue" type="text">
+		<button onclick="loadpage()">Go</button>
+	</div>
+	<iframe id="boxIframe" src=""></iframe>
+
+	<script>
+
+	function _id(id){
+		return document.getElementById(id);
+	}
+
+	function checkUrl(){
+		var link = window.location.href.split("#");
+
+		if(link[1] != null){
+			//load
+			_id("boxIframe").src = link[1];
+			//_id('viewEnterUrl').style.display = 'none';
+		}else{
+			//input URL
+			//_id('viewEnterUrl').style.display = 'block';
+		}
+	}
+
+	function loadpage(){
+		window.location.href = 'index.html#' + _id('urlValue').value;
+		checkUrl();
+	}
+
+	urlValue.onkeypress = function(e){
+		if(e.which == 13){
+			loadpage();
+		}
+	}
+
+	_id('urlValue').focus();
+	checkUrl();
+
+	</script>
+</body>
+</html>
