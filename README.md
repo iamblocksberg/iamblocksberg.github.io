@@ -1,1 +1,1 @@
-[iamblocksberg's Website](http://iamblocksberg.com/)
+[iamblocksberg's Website](http://iamblocksberg.github.io/)
