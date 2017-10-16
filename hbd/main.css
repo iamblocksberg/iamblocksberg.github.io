@@ -5,6 +5,10 @@ body {
 	overflow-y: hidden;
 }
 
+.hidden {
+	display: none;
+}
+
 .bg {
 	position: fixed;
 	width: 100%;
