@@ -25,6 +25,7 @@ body {
 .middle {
 	display: table-cell;
 	vertical-align: middle;
+	width: 100%;
 }
 
 .container {
