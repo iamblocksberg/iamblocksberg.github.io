@@ -4,7 +4,6 @@ body {
 	background-color: #f5f5f5;
 	overflow-y: hidden;
 	height: 100vh;
-	display: table;
 }
 
 .bg {
@@ -22,7 +21,11 @@ body {
 	animation: heart 2s infinite;
 }
 
-.middle {
+.middle-outer {
+	display: table;
+}
+
+.middle-inner {
 	display: table-cell;
 	vertical-align: middle;
 	width: 100%;
