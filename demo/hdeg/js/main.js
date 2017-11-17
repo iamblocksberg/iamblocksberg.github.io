@@ -9,6 +9,7 @@ $(document).ready(function(){
 	// Event
 	var isDrawing = false
 	var currentAssetID = ''
+	var assetDraging = ''
 
 	// Init
 	var gridSize = 32
@@ -41,13 +42,22 @@ $(document).ready(function(){
 		elem.addClass('active')
 	}
 
+	function removeActiveAsset(elem) {
+		currentAssetID = ''
+
+		if (elem != null) {
+			elem.removeClass('active')
+		} else {
+			$('.asset').removeClass('active')
+		}
+	}
+
 	$(document).on('touchend', '.asset', function(){
 		var asset_id = $(this).data('asset-id') + ''
 
 		if (currentAssetID == asset_id) {
 			// deselect this asset
-			currentAssetID = ''
-			$(this).removeClass('active')
+			removeActiveAsset( $(this) )
 		} else {
 			// set select this asset
 			setActiveAsset( $(this) )
@@ -74,6 +84,36 @@ $(document).ready(function(){
 		if (isDrawing) {
 			var touchPos = getTouchPos(e)
 			drawObject(touchPos.x, touchPos.y)
+		}
+
+	})
+
+
+	// Drag & Drop
+	$(document).on('touchmove', '.asset', function(){
+		var asset_id = $(this).data('asset-id') + ''
+		if (assetDraging == '') {
+			assetDraging = asset_id
+		}
+	})
+
+	$(document).on('touchend', function(e){
+
+		if (assetDraging != '') {
+			function getTouchPosEnd(touchEvent) {
+				var rect = canvasDOM.getBoundingClientRect();
+				return {
+					x: touchEvent.changedTouches[0].clientX - rect.left,
+					y: touchEvent.changedTouches[0].clientY - rect.top
+				};
+			}
+
+			var touchPos = getTouchPosEnd(e)
+			drawObject(touchPos.x, touchPos.y)
+			
+			currentAssetID = ''
+			assetDraging = ''
+			removeActiveAsset()
 		}
 
 	})
