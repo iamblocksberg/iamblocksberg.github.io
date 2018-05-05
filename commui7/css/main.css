@@ -38,6 +38,7 @@ body {
 }
 
 #loader {
+	color: #244089;
 	background-color: #fff;
 	position: fixed;
 	top: 0;

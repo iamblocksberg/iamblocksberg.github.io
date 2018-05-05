@@ -177,6 +177,7 @@ function renderUserInfo() {
 
 	if (user_id == null) {
 		$('#log').text('Sorry, Not found this user :(');
+		$('#log').show();
 		$('.spinner').hide();
 		$('#loader').show();
 		// return;
@@ -274,6 +275,7 @@ function renderUserInfo() {
 
 	} else {
 		$('#log').text('Sorry, Not found this user :(');
+		$('#log').show();
 		$('.spinner').hide();
 		$('#loader').show();
 	}
