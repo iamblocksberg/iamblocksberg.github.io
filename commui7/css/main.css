@@ -33,6 +33,10 @@ body {
 	background-color: #FFB100 !important;
 }
 
+#log {
+	display: none;
+}
+
 #loader {
 	background-color: #fff;
 	position: fixed;

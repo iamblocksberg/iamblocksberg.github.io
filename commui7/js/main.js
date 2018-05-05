@@ -176,7 +176,9 @@ function renderUserInfo() {
 	current_user = {};
 
 	if (user_id == null) {
-		changePage('notfounduser');
+		$('#log').text('Sorry, Not found this user :(');
+		$('.spinner').hide();
+		$('#loader').show();
 		// return;
 	}
 
@@ -271,7 +273,9 @@ function renderUserInfo() {
 		onRendered();
 
 	} else {
-		changePage('notfounduser');
+		$('#log').text('Sorry, Not found this user :(');
+		$('.spinner').hide();
+		$('#loader').show();
 	}
 
 }
