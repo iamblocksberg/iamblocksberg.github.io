@@ -293,7 +293,10 @@ function onRendered() {
 
 $(document).ready(function() {
 
-	$('#result_uesrInfo').load('/form.html', null, function(responseText) {
+	var loc = window.location.pathname;
+	var current_directory = loc.substring(0, loc.lastIndexOf('/'));
+
+	$('#result_uesrInfo').load(current_directory + '/form.html', null, function(responseText) {
 		
 		$('#result_uesrInfo').html(responseText);
 
