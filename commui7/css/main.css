@@ -35,6 +35,8 @@ body {
 
 #log {
 	display: none;
+	text-align: center;
+	width: 100%;
 }
 
 #loader {
