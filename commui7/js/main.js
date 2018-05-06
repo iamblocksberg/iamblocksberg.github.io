@@ -216,7 +216,8 @@ function renderUserInfo() {
 		*/
 
 		$('.__title').text(current_user.name +' '+ current_user.lastName +' ');
-		$('.__image').attr('src', user_imageSrc + current_user.id +'.jpg');
+		$('.__image-src').attr('src', user_imageSrc + current_user.id +'.jpg');
+		$('.__image-bg').css('background-image', 'url(' + user_imageSrc + current_user.id +'.jpg' + ')');
 
 		$('.__datetime').text(current_user.datetime);
 		$('.__id').text(current_user.id);
@@ -293,6 +294,7 @@ function onRendered() {
 
 $(document).ready(function() {
 
+	// ref: https://stackoverflow.com/a/3151479
 	var loc = window.location.pathname;
 	var current_directory = loc.substring(0, loc.lastIndexOf('/'));
 
