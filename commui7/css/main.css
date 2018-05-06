@@ -33,6 +33,16 @@ body {
 	background-color: #FFB100 !important;
 }
 
+#photo {
+	width: 100%;
+	padding-top: 100%;
+	background-color: #333;
+
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 50% 30%;
+}
+
 #log {
 	display: none;
 	text-align: center;
