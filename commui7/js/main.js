@@ -261,8 +261,8 @@ function renderUserInfo() {
 		for (work in current_user.work) {
 			if (current_user.work[work].name != '') {
 				__all_work += `
-					<h5 class="w3-opacity"><b>` + current_user.work[work].name + `</b></h5>
-			        <p>` + current_user.work[work].value + `</p>
+					<h5 class="w3-opacity text-capitalize"><b>` + current_user.work[work].name + `</b></h5>
+			        <p class="text-capitalize">` + current_user.work[work].value + `</p>
 			        <hr>
 				`;
 			}
