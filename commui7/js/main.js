@@ -239,7 +239,7 @@ function renderUserInfo() {
 		for (skill in current_user.skill) {
 			if (current_user.skill[skill].name != '') {
 				__all_skill += `
-					<p>` + current_user.skill[skill].name + `</p>
+					<p class="text-capitalize">` + current_user.skill[skill].name + `</p>
 			        <div class="w3-light-grey w3-round-xlarge w3-small">
 						<div class="w3-container w3-center w3-round-xlarge coloryellow" style="width:` + current_user.skill[skill].value * 10 + `%">` + current_user.skill[skill].value * 10 + `%</div>
 					</div>
@@ -250,7 +250,7 @@ function renderUserInfo() {
 		for (language in current_user.language) {
 			if (current_user.language[language].name != '') {
 				__all_language += `
-					<p>` + current_user.language[language].name + `</p>
+					<p class="text-capitalize">` + current_user.language[language].name + `</p>
 			        <div class="w3-light-grey w3-round-xlarge w3-small">
 						<div class="w3-container w3-center w3-round-xlarge coloryellow" style="width:` + current_user.language[language].value * 10 + `%">` + current_user.language[language].value * 10 + `%</div>
 					</div>

@@ -33,6 +33,10 @@ body {
 	background-color: #FFB100 !important;
 }
 
+.text-capitalize {
+	text-transform: capitalize;
+}
+
 #photo {
 	width: 100%;
 	padding-top: 100%;
