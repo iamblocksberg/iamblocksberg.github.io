@@ -229,7 +229,7 @@ function renderUserInfo() {
 		$('.__university').text(current_user.university);
 		$('.__faculty').text(current_user.faculty);
 		$('.__major').text(current_user.major);
-		$('.__minor').text(current_user.name);
+		$('.__minor').text(current_user.minor);
 		$('.__gpa').text(current_user.gpa);
 
 		var __all_skill = '';
