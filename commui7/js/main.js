@@ -113,7 +113,8 @@ function onLoadAllUserInfoDone( responseText ) {
 		} else if (current_column == 0) {
 			row_userInfo.datetime = all_info[iUserInfo];
 		} else if (current_column == 1) {
-			row_userInfo.id = all_info[iUserInfo];
+			// row_userInfo.id = all_info[iUserInfo];
+			row_userInfo.id = all_info[iUserInfo].replace('30', '');
 		} else if (current_column == 2) {
 			row_userInfo.name = all_info[iUserInfo];
 		} else if (current_column == 3) {
