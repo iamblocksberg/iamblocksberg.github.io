@@ -113,8 +113,7 @@ function onLoadAllUserInfoDone( responseText ) {
 		} else if (current_column == 0) {
 			row_userInfo.datetime = all_info[iUserInfo];
 		} else if (current_column == 1) {
-			// row_userInfo.id = all_info[iUserInfo];
-			row_userInfo.id = all_info[iUserInfo].replace('30', '');
+			row_userInfo.id = all_info[iUserInfo];
 		} else if (current_column == 2) {
 			row_userInfo.name = all_info[iUserInfo];
 		} else if (current_column == 3) {
@@ -187,7 +186,7 @@ function renderUserInfo() {
 	// get current user
 	var user_exist = false;
 	for (user in user_info) {
-		if ( user_id == user_info[user].id ) {
+		if ( user_id == user_info[user].id.replace('30', '') ) {
 			user_exist = true;
 			current_user = user_info[user];
 			break;
