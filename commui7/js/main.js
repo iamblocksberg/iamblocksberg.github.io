@@ -186,7 +186,7 @@ function renderUserInfo() {
 	// get current user
 	var user_exist = false;
 	for (user in user_info) {
-		if ( user_id == user_info[user].id.replace('30', '') ) {
+		if ( user_id == user_info[user].id.replace('57130', '571') ) {
 			user_exist = true;
 			current_user = user_info[user];
 			break;
