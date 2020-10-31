@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Note Money</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <table width="100%" id="list-container" class="list-container">
+        <!-- <tr>
+          <th>Paid By</th>
+          <th>Note</th>
+          <th>Amount</th>
+          <th>Half</th>
+          <th>Result</th>
+          <th>Clear</th>
+        </tr> -->
+
+        <!-- <tr>
+          <td>NN</td>
+          <td>Test</td>
+          <td>100</td>
+          <td>YES</td>
+          <td>O = +50</td>
+          <td>
+            <input type="checkbox" id="clear" value="clear" />
+          </td>
+        </tr>
+
+        <tr>
+          <td>O</td>
+          <td>Test Test</td>
+          <td>50</td>
+          <td>NO</td>
+          <td>NN = +50</td>
+          <td>
+            <input type="checkbox" id="clear" value="clear" />
+          </td>
+        </tr> -->
+      </table>
+    </div>
+
+    <div class="add-container">
+      <select id="list-paid-by">
+        <option value="nn" selected>NN</option>
+        <option value="o">O</option>
+      </select>
+
+      <input id="list-amount" type="number" min="1" placeholder="Amount" />
+      <input id="text-note" type="text" placeholder="Note" />
+      <br />
+      <label for="is-list-half">Half</label>
+      <input id="is-list-half" type="checkbox" value="isHalf" />
+      <button id="add-list-button">Add</button>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

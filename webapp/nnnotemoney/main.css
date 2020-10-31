@@ -1,0 +1,21 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+.text-success {
+  color: green;
+}
+
+.list-container {
+  border: 1px solid #000;
+  text-align: center;
+}
+
+.add-container {
+  background-color: #cecece;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
