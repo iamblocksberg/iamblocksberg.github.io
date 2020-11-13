@@ -64,16 +64,18 @@ const onAddList = () => {
 };
 
 const initListContainer = () => {
-  const defaultTr = `
-  <tr>
-  <th>Paid By</th>
-  <th>Note</th>
-  <th>Amount</th>
-  <th>Half</th>
-  <th>Result</th>
-  <th>Clear</th>
-  </tr>
-`;
+  const defaultTr = ``;
+
+  //   const defaultTr = `
+  //   <tr>
+  //   <th>Paid By</th>
+  //   <th>Note</th>
+  //   <th>Amount</th>
+  //   <th>Half</th>
+  //   <th>Result</th>
+  //   <th>Clear</th>
+  //   </tr>
+  // `;
 
   listContainer.innerHTML = defaultTr;
 };
@@ -81,33 +83,81 @@ const initListContainer = () => {
 const drawLists = () => {
   initListContainer();
 
-  lists.forEach((list, index) => {
-    let tr = document.createElement("tr");
-    const td_paidBy = document.createElement("td");
-    const td_note = document.createElement("td");
-    const td_amount = document.createElement("td");
-    const td_half = document.createElement("td");
-    const td_result = document.createElement("td");
-    const td_clear = document.createElement("td");
+  for (let index = lists.length - 1; index > 0; index--) {
+    const list = lists[index];
+
+    let tr = document.createElement("div");
+
+    const td_paidBy = document.createElement("div");
+    const td_note = document.createElement("div");
+    const td_amount = document.createElement("div");
+    const td_half = document.createElement("div");
+    const td_clear = document.createElement("div");
+    const td_result = document.createElement("div");
 
     td_paidBy.innerHTML = list.paidBy;
+    td_amount.innerHTML = list.amount + " ฿";
     td_note.innerHTML = list.note;
-    td_amount.innerHTML = list.amount;
-    td_half.innerHTML = list.isHalf ? "YES" : "NO";
-    td_result.innerHTML = "[Result]";
+    td_half.innerHTML = list.isHalf ? "Half" : "Full";
     td_clear.innerHTML = list.isClear
       ? `<span class="text-success">Clear</span>`
       : `<button onClick="setListClear(${index})">Clear</button>`;
 
+      if (list.paidBy === "nn") {
+
+      } else if (list.paidBy === "o") {
+        
+      }
+
+    td_result.innerHTML = "[Result]";
+
+    tr.className = "card";
+    td_paidBy.className = "width-half";
+    td_amount.className = "width-half text-right";
+    td_note.className = "width-full text-description";
+    td_half.className = "width-half";
+    td_clear.className = "width-half text-right";
+    td_result.className = "width-full";
+
     tr.append(td_paidBy);
-    tr.append(td_note);
     tr.append(td_amount);
+    tr.append(td_note);
     tr.append(td_half);
-    tr.append(td_result);
     tr.append(td_clear);
+    tr.append(td_result);
 
     listContainer.append(tr);
-  });
+  }
+
+  // lists.forEach((list, index) => {
+  //   let tr = document.createElement("div");
+  //   tr.className = "card";
+
+  //   const td_paidBy = document.createElement("div");
+  //   const td_note = document.createElement("div");
+  //   const td_amount = document.createElement("div");
+  //   const td_half = document.createElement("div");
+  //   const td_result = document.createElement("div");
+  //   const td_clear = document.createElement("div");
+
+  //   td_paidBy.innerHTML = list.paidBy;
+  //   td_note.innerHTML = list.note;
+  //   td_amount.innerHTML = list.amount;
+  //   td_half.innerHTML = list.isHalf ? "YES" : "NO";
+  //   td_result.innerHTML = "[Result]";
+  //   td_clear.innerHTML = list.isClear
+  //     ? `<span class="text-success">Clear</span>`
+  //     : `<button onClick="setListClear(${index})">Clear</button>`;
+
+  //   tr.append(td_paidBy);
+  //   tr.append(td_note);
+  //   tr.append(td_amount);
+  //   tr.append(td_half);
+  //   tr.append(td_result);
+  //   tr.append(td_clear);
+
+  //   listContainer.append(tr);
+  // });
 };
 
 // Event
