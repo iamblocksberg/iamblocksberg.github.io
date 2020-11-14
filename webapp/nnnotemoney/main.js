@@ -13,6 +13,14 @@ const isListHalf = document.querySelector("#is-list-half");
 const addListButton = document.querySelector("#add-list-button");
 
 // Function
+const getNameById = (id) => {
+  if (id === "nn") {
+    return "หนิง";
+  } else if (id === "o") {
+    return "โอ";
+  }
+};
+
 const saveToDB = () => {
   localStorage.setItem(localDBName, JSON.stringify(lists));
 };
@@ -91,40 +99,49 @@ const drawLists = () => {
     const td_paidBy = document.createElement("div");
     const td_note = document.createElement("div");
     const td_amount = document.createElement("div");
-    const td_half = document.createElement("div");
-    const td_clear = document.createElement("div");
+    // const td_half = document.createElement("div");
     const td_result = document.createElement("div");
+    const td_clear = document.createElement("div");
 
-    td_paidBy.innerHTML = list.paidBy;
-    td_amount.innerHTML = list.amount + " ฿";
+    td_paidBy.innerHTML = "จ่ายโดย: " + getNameById(list.paidBy);
+    td_amount.innerHTML = list.isHalf
+      ? `<span class="text-line-through text-description">${
+          list.amount
+        }</span> ${list.amount / 2} ฿`
+      : `${list.amount} ฿`;
     td_note.innerHTML = list.note;
-    td_half.innerHTML = list.isHalf ? "Half" : "Full";
+    // td_half.innerHTML = list.isHalf ? "Half" : "Full";
     td_clear.innerHTML = list.isClear
       ? `<span class="text-success">Clear</span>`
       : `<button onClick="setListClear(${index})">Clear</button>`;
 
-      if (list.paidBy === "nn") {
-
-      } else if (list.paidBy === "o") {
-        
-      }
-
-    td_result.innerHTML = "[Result]";
+    let resultText = "";
+    let resultAmount = list.isHalf ? list.amount / 2 : list.amount;
+    if (list.paidBy === "nn") {
+      resultText = `${getNameById("o")}ต้องให้${getNameById(
+        "nn"
+      )} ${resultAmount} ฿`;
+    } else if (list.paidBy === "o") {
+      resultText = `${getNameById("nn")}ต้องให้${getNameById(
+        "o"
+      )} ${resultAmount} ฿`;
+    }
+    td_result.innerHTML = resultText;
 
     tr.className = "card";
     td_paidBy.className = "width-half";
     td_amount.className = "width-half text-right";
-    td_note.className = "width-full text-description";
-    td_half.className = "width-half";
-    td_clear.className = "width-half text-right";
-    td_result.className = "width-full";
+    // td_half.className = "width-half";
+    td_result.className = "width-8";
+    td_clear.className = "width-4 text-right";
+    td_note.className = "width-8 text-description";
 
     tr.append(td_paidBy);
     tr.append(td_amount);
-    tr.append(td_note);
-    tr.append(td_half);
-    tr.append(td_clear);
+    // tr.append(td_half);
     tr.append(td_result);
+    tr.append(td_clear);
+    tr.append(td_note);
 
     listContainer.append(tr);
   }
