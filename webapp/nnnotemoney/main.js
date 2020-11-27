@@ -3,6 +3,20 @@ const localDBName = "nn_noteMoneyLists";
 
 // Variable
 var lists = [];
+const users = [
+  {
+    id: "nn",
+    name: "หนิง",
+  },
+  {
+    id: "o",
+    name: "โอ",
+  },
+];
+const usersId = {
+  o: "o",
+  nn: "nn",
+};
 
 // DOM
 const listContainer = document.querySelector("#list-container");
@@ -11,14 +25,48 @@ const listAmount = document.querySelector("#list-amount");
 const textNote = document.querySelector("#text-note");
 const isListHalf = document.querySelector("#is-list-half");
 const addListButton = document.querySelector("#add-list-button");
+const calResultButton = document.querySelector("#cal-result-button");
 
 // Function
 const getNameById = (id) => {
-  if (id === "nn") {
-    return "หนิง";
-  } else if (id === "o") {
-    return "โอ";
+  for (const user of users) {
+    if (user.id === id) {
+      return user.name;
+    }
   }
+};
+
+const getTotalFromId = (id) => {
+  let total = 0;
+
+  for (const list of lists) {
+    if (list.isClear === false && list.paidBy === id) {
+      const price = parseFloat(list.amount / (list.isHalf ? 2 : 1));
+      total += price;
+    }
+  }
+
+  return total;
+};
+
+const calResult = () => {
+  let result = "";
+  const deptOfO = getTotalFromId(usersId.nn);
+  const deptOfNn = getTotalFromId(usersId.o);
+
+  if (deptOfO > deptOfNn) {
+    result = `${getNameById(usersId.o)}ต้องให้${getNameById(usersId.nn)} ${
+      deptOfO - deptOfNn
+    } ฿`;
+  } else if (deptOfNn > deptOfO) {
+    result = `${getNameById(usersId.nn)}ต้องให้${getNameById(usersId.o)} ${
+      deptOfNn - deptOfO
+    } ฿`;
+  } else {
+    result = `ไม่ติดหนี้กัน`;
+  }
+
+  alert(result);
 };
 
 const saveToDB = () => {
@@ -31,7 +79,12 @@ const loadFromDB = () => {
 };
 
 const removeList = (index) => {
-  alert("remove: " + index);
+  const cf = confirm("Delete " + lists[index].note + "?");
+  if (cf) {
+    lists.splice(index, 1);
+    drawLists();
+    saveToDB();
+  }
 };
 
 const setListClear = (index) => {
@@ -91,7 +144,7 @@ const initListContainer = () => {
 const drawLists = () => {
   initListContainer();
 
-  for (let index = lists.length - 1; index > 0; index--) {
+  for (let index = lists.length - 1; index >= 0; index--) {
     const list = lists[index];
 
     let tr = document.createElement("div");
@@ -102,6 +155,7 @@ const drawLists = () => {
     // const td_half = document.createElement("div");
     const td_result = document.createElement("div");
     const td_clear = document.createElement("div");
+    const td_remove = document.createElement("div");
 
     td_paidBy.innerHTML = "จ่ายโดย: " + getNameById(list.paidBy);
     td_amount.innerHTML = list.isHalf
@@ -114,16 +168,17 @@ const drawLists = () => {
     td_clear.innerHTML = list.isClear
       ? `<span class="text-success">Clear</span>`
       : `<button onClick="setListClear(${index})">Clear</button>`;
+    td_remove.innerHTML = `<button onClick="removeList(${index})">Remove</button>`;
 
     let resultText = "";
     let resultAmount = list.isHalf ? list.amount / 2 : list.amount;
-    if (list.paidBy === "nn") {
-      resultText = `${getNameById("o")}ต้องให้${getNameById(
-        "nn"
+    if (list.paidBy === usersId.nn) {
+      resultText = `${getNameById(usersId.o)}ต้องให้${getNameById(
+        usersId.nn
       )} ${resultAmount} ฿`;
-    } else if (list.paidBy === "o") {
-      resultText = `${getNameById("nn")}ต้องให้${getNameById(
-        "o"
+    } else if (list.paidBy === usersId.o) {
+      resultText = `${getNameById(usersId.nn)}ต้องให้${getNameById(
+        usersId.o
       )} ${resultAmount} ฿`;
     }
     td_result.innerHTML = resultText;
@@ -135,6 +190,7 @@ const drawLists = () => {
     td_result.className = "width-8";
     td_clear.className = "width-4 text-right";
     td_note.className = "width-8 text-description";
+    td_remove.className = "width-4 text-right";
 
     tr.append(td_paidBy);
     tr.append(td_amount);
@@ -142,6 +198,7 @@ const drawLists = () => {
     tr.append(td_result);
     tr.append(td_clear);
     tr.append(td_note);
+    tr.append(td_remove);
 
     listContainer.append(tr);
   }
@@ -177,9 +234,21 @@ const drawLists = () => {
   // });
 };
 
+const drawUserList = () => {
+  let isSetSelected = "selected";
+  for (const user of users) {
+    listPaidBy.innerHTML += `<option value="${user.id}" ${isSetSelected}>${user.name}</option>`;
+    if (isSetSelected != "") {
+      isSetSelected = "";
+    }
+  }
+};
+
 // Event
 window.onload = () => {
   loadFromDB();
   drawLists();
+  drawUserList();
   addListButton.addEventListener("click", onAddList);
+  calResultButton.addEventListener("click", calResult);
 };
