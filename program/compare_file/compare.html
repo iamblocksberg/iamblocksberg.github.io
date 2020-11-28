@@ -1,0 +1,103 @@
+<html>
+<head>
+    <style>
+
+        * {
+            user-select: none;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .new {
+            color: #00ce00;
+        }
+
+        .update {
+            color: #ff7300;
+        }
+
+        .checked {
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        #status {
+            margin-bottom: 15px;
+        }
+
+        #log span {
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="status"></div>
+    <div id="log"></div>
+    <script src="file_a.js"></script>
+    <script src="file_b.js"></script>
+    <script>
+
+        var totalFile = 0;
+        var totalSize = 0;
+
+        function getFileIndex(fileName, list) {
+            var index = null;
+
+            for (var i = 0; i < list.length; i++) {
+                if (fileName == list[i].name) {
+                    index = i;
+                    break;
+                }
+            }
+
+            return index;
+        }
+
+        function addCountFile(fileSize) {
+            totalFile++;
+            totalSize += parseInt(fileSize);
+        }
+
+        function addLog(message) {
+            document.querySelector("#log").innerHTML += message + "<br>";
+        }
+
+        function byteToGB(number) {
+            return (number / 1024 / 1024 / 1024).toFixed(2);
+        }
+
+        for (var i = 0; i < file_b.length; i++) {
+            var fileB_Name = file_b[i].name;
+            var fileB_Size = file_b[i].size;
+            var fileA_Index = getFileIndex(fileB_Name, file_a);
+
+            if (fileA_Index == null) {
+                addCountFile(fileB_Size);
+                addLog("<span class='new'>[NEW] - " + fileB_Name + "</span>");
+            } else {
+                var fileA_Size = file_a[fileA_Index].size;
+
+                if (fileB_Size != fileA_Size) {
+                    addCountFile(fileB_Size);
+                    addLog("<span class='update'>[UPDATE] - " + fileB_Name + "</span>");
+                }
+            }
+        }
+
+        var logList = document.querySelectorAll("#log span");
+        for (var i = 0; i < logList.length; i++) {
+            logList[i].addEventListener("click", function (e) {
+                e.target.classList.toggle("checked")
+            });
+        }
+
+        document.querySelector("#status").innerHTML = "total file: " + totalFile + ", total size: " + byteToGB(totalSize) + " GB";
+
+    </script>
+</body>
+</html>

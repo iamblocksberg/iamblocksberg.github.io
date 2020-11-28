@@ -1,0 +1,9 @@
+
+1.compile java
+javac GetFileSize.java
+
+2.run java
+java GetFileSize "path" "fileName output"
+
+3.Compare
+open compare.html
