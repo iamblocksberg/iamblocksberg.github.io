@@ -5,6 +5,7 @@
 
   <body>
     <h1 id="title">Hello World!</h1>
+    <button onclick="openNextPage()">Open Next Page</button>
     <script type="text/javascript">
       function fromFlutter(newTitle) {
         document.getElementById("title").innerHTML =
@@ -14,6 +15,10 @@
 
       function sendBack() {
         messageHandler.postMessage("Hello from JS");
+      }
+
+      function openNextPage() {
+        messageHandler.postMessage("{OPEN_NEXT_PAGE}");
       }
     </script>
   </body>
