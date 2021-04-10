@@ -15,7 +15,10 @@
     <script type="text/javascript">
       // Receive
       function onReceivePhoto(base64) {
-        document.getElementById("photo").innerHTML = base64;
+        document.getElementById("photo").src =
+          "data:image/jpeg;base64," + base64;
+
+        document.getElementById("title").innerHTML = base64;
       }
 
       function fromFlutter(newTitle) {
