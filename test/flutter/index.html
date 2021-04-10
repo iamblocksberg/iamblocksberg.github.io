@@ -5,21 +5,27 @@
   </head>
 
   <body>
-    <div>v.0.1.0</div>
+    <div>v.0.1.1</div>
     <h1 id="title">Hello World!</h1>
-    <img id="photo" src="" alt="" style="max-width: 200px; max-height: 200px" />
 
     <button onclick="openNextPage()">Open Next Page</button>
     <button onclick="sendTakePhoto()">Take Photo</button>
     <button onclick="sendPickPhoto()">Pick Photo</button>
+
+    <div style="margin-top: 16">
+      <img
+        id="photo"
+        src=""
+        alt=""
+        style="max-width: 200px; max-height: 200px"
+      />
+    </div>
 
     <script type="text/javascript">
       // Receive
       function onReceivePhoto(base64) {
         document.getElementById("photo").src =
           "data:image/jpeg;base64," + base64;
-
-        document.getElementById("title").innerHTML = base64;
       }
 
       function fromFlutter(newTitle) {
