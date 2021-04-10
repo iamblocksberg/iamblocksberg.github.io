@@ -1,24 +1,44 @@
 <html>
   <head>
+    <meta name="viewport" content="width=device-width" />
     <title>My Local HTML File</title>
   </head>
 
   <body>
     <h1 id="title">Hello World!</h1>
+    <img id="photo" src="" alt="" style="max-width: 200px; max-height: 200px" />
+
     <button onclick="openNextPage()">Open Next Page</button>
+    <button onclick="sendTakePhoto()">Take Photo</button>
+    <button onclick="sendPickPhoto()">Pick Photo</button>
+
     <script type="text/javascript">
+      // Receive
+      function onReceivePhoto(base64) {
+        document.getElementById("photo").innerHTML = base64;
+      }
+
       function fromFlutter(newTitle) {
         document.getElementById("title").innerHTML =
           newTitle + " : " + new Date().getTime();
         sendBack();
       }
 
+      // Send
       function sendBack() {
         messageHandler.postMessage("Hello from JS");
       }
 
       function openNextPage() {
         messageHandler.postMessage("{OPEN_NEXT_PAGE}");
+      }
+
+      function sendTakePhoto() {
+        window.messageHandler.postMessage("{TAKE_PHOTO}");
+      }
+
+      function sendPickPhoto() {
+        window.messageHandler.postMessage("{PICK_PHOTO}");
       }
     </script>
   </body>
