@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Download File</title>
+    <style>
+      body {
+        width: 950px;
+        margin: 10px auto;
+      }
+      a {
+        padding: 10px;
+        display: inline-block;
+        border-radius: 5px;
+        background: #2962ff;
+        color: #fff;
+        font: 25px Arial;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        margin-bottom: 10px;
+        max-width: 600px;
+      }
+
+      .box-credit {
+        margin-top: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <img
+      src="https://images.unsplash.com/photo-1592930845156-49a0941384c8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+    />
+
+    <a
+      href="#"
+      data-href="https://images.unsplash.com/photo-1592930845156-49a0941384c8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+      download
+    >
+      Download</a
+    >
+
+    <div class="box-credit">
+      credit:
+      <a href="https://codepen.io/davizp/pen/MXrEKR" target="_blank">
+        https://codepen.io/davizp/pen/MXrEKR
+      </a>
+    </div>
+
+    <script>
+      function imageToBase64(src = "#", outputFormat) {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+
+          img.crossOrigin = "Anonymous";
+
+          img.onload = function () {
+            const canvas = document.createElement("CANVAS");
+            const ctx = canvas.getContext("2d");
+            let dataURL;
+
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+            dataURL = canvas.toDataURL("image/png");
+
+            resolve(dataURL);
+          };
+          img.src = src;
+
+          if (img.complete || img.complete === undefined) {
+            img.src =
+              "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+            img.src = src;
+          }
+        });
+      }
+
+      const imageEl = document.querySelector("a");
+
+      imageEl.addEventListener("click", (event) => {
+        const { target } = event;
+        const imageHREF = target.dataset.href;
+
+        if (target.attributes.href.value === "#") {
+          event.preventDefault();
+
+          console.dir(target.attributes.href.value);
+
+          imageToBase64(imageHREF).then((image) => {
+            target.attributes.href.value = image;
+
+            target.click();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
