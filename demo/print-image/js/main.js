@@ -12,9 +12,15 @@ let canvas = document.querySelector("#canvas");
 let canvas_image = document.querySelector("#canvas_image");
 let flipCamera = document.getElementById("flip-camera");
 
+var stream;
 var isFrontCam = false;
+
+function getFacingMode() {
+  return isFrontCam ? "user" : "environment";
+}
+
 var constraints = {
-  video: { facingMode: isFrontCam ? "user" : "environment" },
+  video: { facingMode: getFacingMode() },
   audio: false,
 };
 
@@ -27,12 +33,14 @@ var constraints = {
 // });
 
 async function runWebCam() {
-  let stream = await navigator.mediaDevices.getUserMedia(constraints);
+  stream = await navigator.mediaDevices.getUserMedia(constraints);
   video.srcObject = stream;
 }
 
 flipCamera.onclick = function () {
   isFrontCam = !isFrontCam;
+  constraints.video.facingMode = getFacingMode();
+  console.log(isFrontCam, constraints);
   runWebCam();
 };
 
