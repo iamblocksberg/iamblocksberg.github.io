@@ -1,4 +1,8 @@
-// ref print: https://htmldom.dev/print-an-image/
+/*
+ref webcam: https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos
+ref webcam: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+ref print: https://htmldom.dev/print-an-image/
+*/
 
 // ##### Webcam ##### \\
 // let camera_button = document.querySelector("#start-camera");
@@ -6,6 +10,13 @@ let video = document.querySelector("#video");
 let click_button = document.querySelector("#click-photo");
 let canvas = document.querySelector("#canvas");
 let canvas_image = document.querySelector("#canvas_image");
+let flipCamera = document.getElementById("flip-camera");
+
+var isFrontCam = false;
+var constraints = {
+  video: { facingMode: isFrontCam ? "user" : "environment" },
+  audio: false,
+};
 
 // camera_button.addEventListener("click", async function () {
 //   let stream = await navigator.mediaDevices.getUserMedia({
@@ -15,12 +26,14 @@ let canvas_image = document.querySelector("#canvas_image");
 //   video.srcObject = stream;
 // });
 
-window.onload = async function () {
-  let stream = await navigator.mediaDevices.getUserMedia({
-    video: true,
-    audio: false,
-  });
+async function runWebCam() {
+  let stream = await navigator.mediaDevices.getUserMedia(constraints);
   video.srcObject = stream;
+}
+
+flipCamera.onclick = function () {
+  isFrontCam = !isFrontCam;
+  runWebCam();
 };
 
 click_button.addEventListener("click", function () {
@@ -34,6 +47,8 @@ click_button.addEventListener("click", function () {
   // data url of the image
   // console.log(image_data_url);
 });
+
+window.onload = runWebCam();
 
 // ##### Print ##### \\
 // document.addEventListener("DOMContentLoaded", function () {
