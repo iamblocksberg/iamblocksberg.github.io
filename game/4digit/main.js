@@ -1,3 +1,4 @@
+// Start: 2023/01/24 20:00
 // Type: string[]
 var targetNumber = [];
 const targetLength = 4;
@@ -91,3 +92,10 @@ function run() {
 }
 
 run();
+
+/*
+TODO
+- count used time
+- count amount of input
+- restart button
+*/
