@@ -2,7 +2,8 @@
   box-sizing: border-box;
 }
 
-input {
+input,
+button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -35,9 +36,11 @@ body {
 #text-input {
   width: 70%;
   padding: 8px;
+  border: 2px solid rgb(0, 134, 183);
 }
 
 #input-send {
   width: 30%;
   padding: 8px;
+  border: 2px solid rgb(0, 134, 183);
 }
