@@ -1,0 +1,51 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>HTML DOM - Print an image</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter&family=Source+Code+Pro&display=swap"
+    />
+  </head>
+  <body>
+    <p>v0.0.3</p>
+    <!-- Webcam -->
+    <video id="video" width="320" height="240" autoplay></video>
+    <br />
+    <button id="flip-camera">Flip Camera</button>
+    <button id="click-photo">Take Photo & Print</button>
+    <br />
+    <canvas id="canvas" width="320" height="240" style="display: none"></canvas>
+    <br />
+    <image id="canvas_image" width="320" height="240" />
+    <!-- End Webcam -->
+
+    <!-- <div
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 4rem;
+      "
+    >
+      <img id="image" src="/assets/village.jpg" />
+      <div style="margin-top: 1rem; text-align: center">
+        <button
+          style="
+            background-color: #63b3ed;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+          "
+          id="print"
+        >
+          Print
+        </button>
+      </div>
+    </div> -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
