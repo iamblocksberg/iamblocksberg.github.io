@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interval</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      #parent {
+      }
+      .parent {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+
+      .time {
+        width: 50px;
+        padding: 2.5px;
+        font-size: 10px;
+        justify-content: center;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+      }
+
+      .col {
+        display: flex;
+      }
+
+      .dot {
+        font-size: 8.5px;
+        width: 10px;
+        height: 10px;
+        background-color: #00ff00;
+        margin: 2.5px;
+        text-align: center;
+        color: #00ff00;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="parent" class="parent">
+      <!-- <div class="row">
+        <div class="col time">20:55</div>
+        <div class="col dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div> -->
+    </div>
+
+    <script>
+      function createRow(hour, minute, second) {
+        const row = document.createElement("div");
+        const time = document.createElement("div");
+        const dots = document.createElement("div");
+
+        row.id = `row-${hour}_${minute}`;
+        time.id = `time-${hour}_${minute}`;
+        dots.id = `dots-${hour}_${minute}`;
+
+        row.classList.add("row");
+        time.classList.add("col");
+        time.classList.add("time");
+        dots.classList.add("col");
+        dots.classList.add("dots");
+
+        time.innerText = `${hour}:${minute}`;
+
+        row.appendChild(time);
+        row.appendChild(dots);
+        document.getElementById("parent").appendChild(row);
+        createDot(hour, minute, second);
+      }
+
+      function createDot(hour, minute, second) {
+        const dot = document.createElement("div");
+        dot.classList.add("dot");
+        dot.innerText = second;
+
+        const dots = document.getElementById(`dots-${hour}_${minute}`);
+        if (dots === null) {
+          createRow(hour, minute, second);
+        } else {
+          dots.appendChild(dot);
+        }
+      }
+
+      const start = new Date();
+      let last;
+
+      function doWork() {
+        const now = new Date();
+
+        if (last != null) {
+          const diff = now.getTime() - last.getTime();
+          if (diff > 2000) {
+            console.error("Lost:", diff, last, now);
+          }
+        }
+
+        last = now;
+        console.log("Now:", now);
+
+        const hour = now.getHours();
+        const minute = now.getMinutes();
+        const second = now.getSeconds();
+
+        if (second === 0) {
+          createRow(hour, minute, second);
+        } else {
+          createDot(hour, minute, second);
+        }
+      }
+
+      setInterval(doWork, 1000);
+    </script>
+  </body>
+</html>
