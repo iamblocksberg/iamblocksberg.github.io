@@ -6,6 +6,7 @@ const targetLength = 4;
 const textInput = document.querySelector("#text-input");
 const log = document.querySelector("#log");
 const boxInput = document.querySelector("#box-input");
+const playAgainBtn = document.querySelector("#play-again");
 const form = document.querySelector("#form");
 
 function genNumber() {
@@ -53,10 +54,7 @@ function checkInput() {
   textInput.value = "";
   textInput.focus();
 
-  if (countA === targetLength) {
-    boxInput.style.visibility = "hidden";
-    printToDisplay("YOU WIN!!!");
-  }
+  if (countA === targetLength) onFinishGame();
 }
 
 function isInputRepeatNumber() {
@@ -82,13 +80,22 @@ function onSubmit(event) {
   checkInput();
 }
 
+function onPlayAgain() {
+  window.location.reload();
+}
+
+function onFinishGame() {
+  boxInput.style.display = "none";
+  playAgainBtn.style.display = "block";
+  printToDisplay("<br>YOU WIN!!!");
+}
+
 function run() {
   form.addEventListener("submit", onSubmit);
 
   genNumber();
   textInput.focus();
-  printToDisplay("Hello");
-  printToDisplay("");
+  printToDisplay("4 Digit Game<br>");
 }
 
 run();

@@ -22,24 +22,37 @@ body {
   margin-left: auto;
   margin-right: auto;
   background-color: rgb(0, 163, 204);
+  position: relative;
 }
 
 #log {
   padding: 16px;
 }
 
-#box-input {
+#box-input,
+#play-again {
   padding: 16px;
   background-color: rgb(0, 134, 183);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#play-again {
+  display: none;
+  text-align: center;
 }
 
 #text-input {
+  outline: 0;
   width: 70%;
   padding: 8px;
   border: 2px solid rgb(0, 134, 183);
 }
 
-#input-send {
+#input-send,
+#play-again .btn {
   width: 30%;
   padding: 8px;
   border: 2px solid rgb(0, 134, 183);
