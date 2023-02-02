@@ -9,6 +9,11 @@ button {
   appearance: none;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   background-color: #fff;
   margin: 0;
@@ -23,10 +28,27 @@ body {
   margin-right: auto;
   background-color: rgb(0, 163, 204);
   position: relative;
+  height: 100%;
+}
+
+#header {
+  background-color: red;
+  height: 50px;
 }
 
 #log {
   padding: 16px;
+  height: calc(100% - 50px - 50px);
+}
+
+#footer {
+  background-color: green;
+  height: 50px;
+}
+
+#header,
+#log,
+#footer {
 }
 
 #box-input,
