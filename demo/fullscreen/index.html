@@ -7,15 +7,74 @@
     <title>Document</title>
   </head>
   <body>
-    <button onclick="toggleFullScreen()">Toggle</button>
+    <div>
+      No Sleep:
+      <span id="nosleep_value"></span>
+    </div>
+
+    <div>
+      Fullscreen:
+      <span id="fullscreen_value"></span>
+    </div>
+
+    <hr />
+
+    <button onclick="toggleNoSleep()">toggleNoSleep</button>
+    <button onclick="toggleFullScreen()">toggleFullScreen</button>
+    <button onclick="toggleBG()">toggleBG</button>
+
+    <script src="NoSleep.min.js"></script>
     <script>
+      var isSleep = false;
+      var isFullscreen = false;
+      var isBlack = false;
+      var noSleep = new NoSleep();
+
+      function toggleNoSleep() {
+        if (isSleep) {
+          noSleep.disable();
+          isSleep = false;
+        } else {
+          noSleep.enable();
+          isSleep = true;
+        }
+
+        updateValueSleep();
+      }
+
       function toggleFullScreen() {
         if (!document.fullscreenElement) {
           document.documentElement.requestFullscreen();
+          isFullscreen = true;
         } else if (document.exitFullscreen) {
           document.exitFullscreen();
+          isFullscreen = false;
+        }
+
+        updateValueFullscreen();
+      }
+
+      function updateValueSleep() {
+        document.getElementById("nosleep_value").innerHTML = isSleep;
+      }
+
+      function updateValueFullscreen() {
+        document.getElementById("fullscreen_value").innerHTML = isFullscreen;
+      }
+
+      function toggleBG() {
+        isBlack = !isBlack;
+        if (isBlack) {
+          document.body.style.background = "black";
+        } else {
+          document.body.style.background = "white";
         }
       }
+
+      updateValueSleep();
+      updateValueFullscreen();
+
+      console.log("v.0.0.1");
     </script>
   </body>
 </html>
