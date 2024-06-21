@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .track {
+        position: relative;
+      }
+
+      .box {
+        width: 50%;
+        height: 100vh;
+        background: red;
+        color: white;
+      }
+
+      #one {
+        background-color: rgba(0, 255, 0, 0.5);
+        margin-left: 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+
+      #two {
+        background-color: red;
+        z-index: 0;
+        position: relative;
+      }
+
+      #three {
+        background-color: pink;
+        position: relative;
+        z-index: 2;
+      }
+
+      #four {
+        background-color: blue;
+        position: relative;
+        z-index: 2;
+      }
+
+      #two2 {
+        position: relative;
+        top: 20px;
+        left: 20px;
+        background: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="track">
+      <div class="box" id="one">One</div>
+      <div class="box" id="two">Two</div>
+      <div class="box" id="three">Three</div>
+      <div class="box" id="four">Four</div>
+    </div>
+  </body>
+</html>
