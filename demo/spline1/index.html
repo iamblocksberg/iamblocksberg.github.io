@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: pink;
+        margin: 0;
+      }
+
+      .track {
+        width: 100%;
+        position: relative;
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
+        height: 100vh;
+        z-index: 0;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        padding-right: 36px;
+        /* padding-right: 360px; */
+      }
+
+      .header .title {
+        text-align: right;
+        /* width: 100%; */
+        color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 64px;
+      }
+
+      .content {
+        padding: 24px;
+        position: relative;
+        background-color: #fff;
+        height: 2000px;
+        z-index: 2;
+      }
+
+      #spline-container {
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      #loader {
+        background-color: pink;
+        width: 100%;
+        height: 60px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+      }
+
+      @media (min-width: 768px) {
+        .header {
+          /* padding-right: 64px; */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="track">
+      <!-- Hero -->
+      <header class="header">
+        <h1 class="title">Hola Hi Hello</h1>
+      </header>
+
+      <!-- Spline -->
+      <div id="spline-container">
+        <!-- <spline-viewer
+              url="https://prod.spline.design/lyuybD4hrW5LYOzH/scene.splinecode"
+            ></spline-viewer> -->
+
+        <spline-viewer
+          url="https://prod.spline.design/2JzffeGYJDU4ykyy/scene.splinecode"
+        ></spline-viewer>
+      </div>
+
+      <div class="content">
+        <h2>Lorem Ipsum</h2>
+        <div>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with
+          the release of Letraset sheets containing Lorem Ipsum passages, and
+          more recently with desktop publishing software like Aldus PageMaker
+          including versions of Lorem Ipsum.
+        </div>
+      </div>
+    </div>
+
+    <div id="loader"></div>
+
+    <script
+      type="module"
+      src="https://unpkg.com/@splinetool/viewer@1.7.6/build/spline-viewer.js"
+    ></script>
+    <script>
+      setTimeout(() => {
+        const logo = document
+          .querySelector("#spline-container > spline-viewer")
+          .shadowRoot.querySelector("#logo");
+        const loader = document.querySelector("#loader");
+
+        logo.remove();
+        loader.remove();
+      }, 1000);
+    </script>
+  </body>
+</html>
