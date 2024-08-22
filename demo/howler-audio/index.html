@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="start()">Start</button>
+
+    <script src="howler.js"></script>
+    <script>
+      const path = "audio/";
+      const soundClick =
+        "data:audio/mpeg;base64,/+MYxAAEaAIEeUAQAgBgNgP/////KQQ/////Lvrg+lcWYHgtjadzsbTq+yREu495tq9c6v/7vt/of7mna9v6/btUnU17Jun9/+MYxCkT26KW+YGBAj9v6vUh+zab//v/96C3/pu6H+pv//r/ycIIP4pcWWTRBBBAMXgNdbRaABQAAABRWKwgjQVX0ECmrb///+MYxBQSM0sWWYI4A++Z/////////////0rOZ3MP//7H44QEgxgdvRVMXHZseL//540B4JAvMPEgaA4/0nHjxLhRgAoAYAgA/+MYxAYIAAJfGYEQAMAJAIAQMAwX936/q/tWtv/2f/+v//6v/+7qTEFNRTMuOTkuNVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
+      const audioList = [
+        soundClick,
+        path + "alien_shoot.wav",
+        path + "bonus.wav",
+        path + "pop.mp3",
+        // path + "game.mp3",
+        path + "pause.wav",
+        path + "player_shoot.wav",
+      ];
+
+      function start() {
+        playMusic();
+      }
+
+      let playlist = [];
+
+      function addMusicToList(url) {
+        playlist.push(url);
+      }
+
+      function playMusic() {
+        if (playlist.length > 0) {
+          console.log("play " + playlist[0]);
+          const sound = new Howl({
+            src: [playlist[0]],
+            onend: function () {
+              console.log("end " + playlist[0]);
+              playlist.shift();
+              playMusic();
+            },
+          });
+          sound.play();
+        } else {
+          console.log("The playlist is empty.");
+        }
+      }
+
+      for (const item of audioList) {
+        addMusicToList(item);
+      }
+    </script>
+  </body>
+</html>
